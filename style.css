@@ -1,0 +1,311 @@
+/* style.css */
+
+/* Reset básico para remover margens e preenchimentos padrão do navegador */
+body, h1, h2, p, table, th, td, label, input, button, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    background-color: #e0e0e0; /* Um cinza mais claro para o fundo geral como na imagem */
+    display: flex; /* Usar flexbox para centralizar o conteúdo verticalmente */
+    flex-direction: column; /* Conteúdo em coluna */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    padding: 20px 0; /* Espaçamento superior e inferior */
+}
+
+/* Estilos para o título principal "Eficiência Energética" */
+h1 {
+    text-align: center;
+    background-color: #333; /* Fundo escuro como na imagem */
+    color: white;
+    padding: 15px 0;
+    width: 100%; /* Ocupa toda a largura da tela */
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    margin-bottom: 30px; /* Espaço abaixo do título */
+}
+
+/* Container para centralizar o restante do conteúdo */
+/* Este estilo será aplicado a todos os divs/tables/buttons que não o h1 */
+body > *:not(h1) {
+    width: 90%; /* Define a largura máxima dos elementos */
+    max-width: 900px; /* Largura máxima para conteúdo, ajuste se necessário */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px; /* Espaço entre os blocos */
+}
+
+
+/* Estilos para o botão "Adicionar novo aparelho" */
+body > button[onclick="adicionar()"] { /* Seleciona o botão diretamente no body */
+    background-color: #007bff; /* Azul vibrante da imagem */
+    color: white;
+    padding: 15px 30px; /* Aumentado o padding para ficar mais "cheio" */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em; /* Fonte um pouco maior */
+    font-weight: bold;
+    text-transform: uppercase; /* Deixa em maiúsculas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para o botão */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+body > button[onclick="adicionar()"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Efeito de "levantar" */
+}
+
+
+/* Formulário de Adição de Aparelho (input-form) */
+#input-form {
+    background-color: #333; /* Fundo escuro como na imagem */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: white; /* Texto claro */
+    position: relative;
+    /* Remover margin: auto aqui se o flexbox do body já centraliza */
+    margin-top: 20px; /* Margem superior */
+    margin-bottom: 20px; /* Margem inferior */
+}
+
+#input-form h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+#input-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#input-form input[type="text"],
+#input-form input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555; /* Borda mais suave */
+    border-radius: 4px;
+    background-color: #4a4a4a; /* Fundo dos inputs mais escuro */
+    color: white;
+    font-size: 1em;
+}
+
+#input-form input[type="text"]::placeholder,
+#input-form input[type="number"]::placeholder {
+    color: #bbb;
+}
+
+#input-form button#add-aparelho-btn {
+    background-color: #28a745; /* Verde para adicionar */
+    color: white;
+    padding: 12px 20px; /* Aumentado o padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.05em;
+    display: block;
+    width: 100%;
+    margin-top: 20px; /* Mais espaço */
+    transition: background-color 0.3s ease;
+}
+
+#input-form button#add-aparelho-btn:hover {
+    background-color: #218838;
+}
+
+/* Botão de fechar (X) no formulário */
+#input-form button[onclick="fechar()"] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    line-height: 1;
+    display: flex; /* Para centralizar o "X" */
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#input-form button[onclick="fechar()"]:hover {
+    background-color: #c82333;
+}
+
+
+/* Tabela de Aparelhos */
+table {
+    border-collapse: collapse;
+    background-color: #333; /* Fundo escuro como na imagem */
+    color: white; /* Texto da tabela claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden; /* Para que o border-radius funcione com as bordas da tabela */
+    margin-bottom: 30px; /* Espaço abaixo da tabela */
+}
+
+th, td {
+    border: 1px solid #555; /* Cor da borda das células mais suave */
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #222; /* Fundo do cabeçalho da tabela ainda mais escuro */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em; /* Ligeiramente menor */
+    padding: 15px 12px; /* Mais padding para os cabeçalhos */
+}
+
+/* Linhas pares com um fundo ligeiramente diferente */
+tbody tr:nth-child(even) {
+    background-color: #3a3a3a; /* Cinza um pouco mais claro */
+}
+
+/* Efeito hover nas linhas da tabela */
+tbody tr:hover {
+    background-color: #444;
+}
+
+/* Se as células <td> vazias estiverem aparecendo, este CSS as esconde */
+/* Isso é importante para evitar bordas feias no início antes dos dados carregarem */
+tbody td:empty {
+    display: none;
+}
+
+
+/* Seção de Cálculo de Custo */
+.calculo-custo {
+    background-color: #333; /* Fundo escuro */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    margin-bottom: 30px; /* Espaçamento final */
+}
+
+.calculo-custo label {
+    display: inline-block; /* Para alinhar com o input */
+    margin-bottom: 15px; /* Espaço para o próximo elemento */
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.calculo-custo input[type="number"] {
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #4a4a4a;
+    color: white;
+    width: 80px; /* Largura reduzida para o input */
+    text-align: center;
+    margin-right: 15px;
+    font-size: 0.95em;
+}
+
+.calculo-custo button#calcular-custo-btn {
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 8px 15px; /* Padding menor */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em; /* Fonte menor */
+    transition: background-color 0.3s ease;
+    min-width: 120px; /* Largura mínima para o botão */
+}
+
+.calculo-custo button#calcular-custo-btn:hover {
+    background-color: #0056b3;
+}
+
+.calculo-custo p {
+    margin-top: 25px; /* Mais espaço acima do resultado */
+    font-size: 1.3em; /* Fonte um pouco maior */
+    font-weight: bold;
+}
+
+.calculo-custo #custo-total-diario,  #custo-total-mensal{
+    color: #5fbe1f; /* Amarelo dourado para destacar o valor, mais visível */
+    font-size: 1.5em; /* Fonte maior para o valor final */
+    display: block; /* Para que o valor fique em uma nova linha */
+    margin-top: 5px; /* Espaçamento acima do valor */
+}
+
+/* Remover ajustes de grid anteriores, pois o layout agora é centralizado */
+body {
+    /* display: grid; */ /* REMOVIDO */
+    /* grid-template-columns: 250px 1fr; */ /* REMOVIDO */
+    /* grid-template-rows: auto 1fr; */ /* REMOVIDO */
+    /* min-height: 100vh; */ /* JÁ DEFINIDO NO INÍCIO */
+    background-color: #5fbe1f6e; /* Ajustado para o cinza mais claro */
+}
+
+/* Remover pseudo-elementos de sidebar */
+body::before,
+body::after {
+    content: none;
+}
+
+/* Remover estilos de grid-column/row */
+h1 {
+    /* grid-column: 1 / -1; */ /* REMOVIDO */
+    /* grid-row: 1; */ /* REMOVIDO */
+    /* ... outros estilos ... */
+}
+
+/* Remover estilos de grid-column/row dos outros elementos */
+body > button,
+body > div,
+body > table,
+.calculo-custo {
+    /* grid-column: 2; */ /* REMOVIDO */
+    /* margin-left: auto; */ /* MANTIDO, mas agora funciona com flexbox */
+    /* margin-right: auto; */ /* MANTIDO, mas agora funciona com flexbox */
+    /* ... outros estilos ... */
+}
+
+th, td{
+    text-align: center;
+}
+
+th{
+    font-size: xx-large;
+}
+
+td{
+    font-size: x-large;
+}
+
+.remove-btn {
+    background-color: #dc3545; /* Vermelho para "Remover" */
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em; /* Fonte um pouco menor */
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
