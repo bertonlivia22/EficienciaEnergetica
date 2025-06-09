@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eficiência Energética</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Eficiência Energética</h1>
+        
+    <button type="button" onclick="adicionar()">Adicionar novo aparelho</button>
+    <br>
+    <div id="input-form" style="display: none;">
+        <button onclick="fechar()">X</button>
+        <label for="aparelho-nome">Aparelho:</label>
+        <input type="text" id="aparelho-nome" placeholder="Nome do aparelho">
+
+        <label for="aparelho-quantidade">Quantidade:</label>
+        <input type="number" id="aparelho-quantidade" placeholder="Quantidade">
+
+        <label for="aparelho-consumo">Consumo (W):</label>
+        <input type="number" id="aparelho-consumo" placeholder="Consumo em Watts">
+
+        <label for="aparelho-horas">Horas de Uso:</label>
+        <input type="number" id="aparelho-horas" placeholder="Horas por dia">
+
+        <button id="add-aparelho-btn">Adicionar Aparelho</button>
+    </div>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>APARELHO</th>
+                <th>QUANTIDADE</th>
+                <th>CONSUMO (W/h)</th>
+                <th>HORAS DE USO</th>
+                <th>CONSUMO FINAL (Wh/dia)</th>
+                <th>CUSTO DIÁRIO (R$)</th> </tr>
+        </thead>
+        <tbody id="aparelhos-table-body">
+            </tbody>
+    </table>
+    <br><br>
+
+    <div class="calculo-custo">
+        <label for="preco-kwh">Preço do kWh (R$):</label>
+        <input type="number" id="preco-kwh" value="0.72" step="0.01" min="0">
+        <button id="calcular-custo-btn">Atualizar Custo</button>
+        <p>Custo Total Estimado por Dia: <span id="custo-total-diario">R$ 0,00</span></p>
+        <p>Custo Total Estimado por Mês: <span id="custo-total-mensal">R$ 0,00</span></p>
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="script.js"></script>
+</html>
